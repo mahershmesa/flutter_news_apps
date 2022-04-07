@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/feature/news_headline/view/news_headling_view.dart';
+import 'package:flutter_ui/feature/search_news/view/search_news_view.dart';
 import 'package:flutter_ui/pages/furnitures.dart';
+import 'package:get/get.dart';
 
 
 
-void main() => runApp(
-  MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Furnitures(),
-  )
-);
+void main() => runApp(MyApp());
 
-class HomePage extends StatelessWidget {
-  const HomePage({ Key? key }) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: EdgeInsets.all(20),
-        color: Color(0xff8186F0),
-        //child: Center(child: Box()),
+    return GetMaterialApp(
+      title: 'Car Rental',
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      getPages: [
+        GetPage(name: "/news_headline", page:()=> NewsHeadlineView()),
+        GetPage(name: "/search_news", page:()=> SearchNewsView()),
+      ],
+      initialRoute: "/news_headline",
     );
   }
 }
